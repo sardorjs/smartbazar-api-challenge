@@ -1,3 +1,6 @@
+## MacOS Sail alias Locally
+- alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+
 ## Admin Credentials:
 - email: admin@admin.com
 - password: admin12345
