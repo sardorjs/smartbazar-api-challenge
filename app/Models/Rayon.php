@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
+ * @property int $id
  * @property int $city_id
  * @property string $name
  * @property-read City $city
- * @method Builder|Rayon query()
+ * @method static Builder|Rayon query()
  */
 
 class Rayon extends Model

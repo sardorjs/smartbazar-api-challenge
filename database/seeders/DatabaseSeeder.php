@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\City;
+use App\Models\Merchant;
 use App\Models\Rayon;
+use App\Models\Shop;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,8 +17,17 @@ class DatabaseSeeder extends Seeder
     {
         // Добавление фейковых городов и районов
         City::factory()
-            ->count(2)
-            ->has(Rayon::factory()->count(4))
+            ->count(3)
+            ->has(Rayon::factory()->count(8))
+            ->create();
+
+        // Добавление Мерчантов с их Магазинами
+        Merchant::factory()
+            ->count(3)
+            ->has(
+                Shop::factory()
+                ->count(8)
+            )
             ->create();
     }
 }

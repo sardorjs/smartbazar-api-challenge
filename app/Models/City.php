@@ -11,8 +11,8 @@ use Illuminate\Support\Collection;
 
 /**
  * @property string $name,
- * @method static Builder|City query(),
  * @property-read Collection<Rayon>|Rayon[] $rayons
+ * @method static Builder|City query(),
  */
 class City extends Model
 {

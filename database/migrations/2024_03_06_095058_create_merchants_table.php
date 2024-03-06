@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('merchants', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->boolean('status')->default(1)->comment('Продавец актуален или нет');
+            $table->dateTime('registered_at')->comment('Дата и время регистрации продавца в системе');
             $table->timestamps();
         });
     }
