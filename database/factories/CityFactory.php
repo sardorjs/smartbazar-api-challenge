@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\City;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CityFactory extends Factory
 {
+    protected $model = City::class;
     /**
      * Define the model's default state.
      *
@@ -17,7 +19,9 @@ class CityFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->city(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

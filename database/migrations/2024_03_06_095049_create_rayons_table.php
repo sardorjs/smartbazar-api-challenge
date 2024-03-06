@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('rayons', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('city_id')->constrained();
+            $table->string('name');
             $table->timestamps();
         });
     }
