@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\City;
+use App\Models\Rayon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class RayonFactory extends Factory
 {
+    protected $model = Rayon::class;
     /**
      * Define the model's default state.
      *
@@ -17,7 +20,8 @@ class RayonFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'city_id' => City::factory(),
+            'name' => fake()->streetName()
         ];
     }
 }
