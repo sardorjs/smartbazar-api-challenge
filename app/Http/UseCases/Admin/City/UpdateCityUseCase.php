@@ -14,6 +14,8 @@ class UpdateCityUseCase
     ) {}
 
     /**
+     * @param City $city
+     * @param UpdateCityDTO $updateCityDTO
      * @return RedirectResponse
      */
     public function execute(City $city, UpdateCityDTO $updateCityDTO): RedirectResponse

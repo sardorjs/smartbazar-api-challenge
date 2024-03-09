@@ -7,6 +7,7 @@ use App\Http\DTO\Admin\City\UpdateCityDTO;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
 use App\Http\UseCases\Admin\City\CreateCityUseCase;
+use App\Http\UseCases\Admin\City\DestroyCityUseCase;
 use App\Http\UseCases\Admin\City\EditCityUseCase;
 use App\Http\UseCases\Admin\City\StoreCityUseCase;
 use App\Http\UseCases\Admin\City\UpdateCityUseCase;
@@ -89,20 +90,32 @@ class CityController extends BaseController
 
     /**
      * Update the specified resource in storage.
+     * @param UpdateCityRequest $request
+     * @param City $city
+     * @param UpdateCityUseCase $updateCityUseCase
+     * @return RedirectResponse
+     * @throws ParseException
      */
     public function update(
         UpdateCityRequest $request,
         City $city,
         UpdateCityUseCase $updateCityUseCase,
-    ) {
+    ): RedirectResponse
+    {
         return $updateCityUseCase->execute($city, UpdateCityDTO::fromArray($request->validated()));
     }
 
     /**
      * Remove the specified resource from storage.
+     * @param City $city
+     * @param DestroyCityUseCase $destroyCityUseCase
+     * @return RedirectResponse
      */
-    public function destroy(City $city)
+    public function destroy(
+        City $city,
+        DestroyCityUseCase $destroyCityUseCase,
+    ): RedirectResponse
     {
-        //
+        return $destroyCityUseCase->execute($city);
     }
 }
