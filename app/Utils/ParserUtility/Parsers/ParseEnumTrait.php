@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Utils\ParserUtility\Parsers;
 
 use App\Utils\ParserUtility\Exceptions\ParseException;
+use MyCLabs\Enum\Enum;
 
 trait ParseEnumTrait
 {
@@ -40,10 +41,9 @@ trait ParseEnumTrait
      * @description Reference(&) needed for passing Undefined array keys
      * @template T
      * @param class-string<T> $className
-     * @return T&!null
      * @throws ParseException
      */
-    protected static function parseEnum(string $className, mixed &$value, ?Enum $defaultValue = null)
+    protected static function parseEnum(string $className, mixed &$value, ?Enum $defaultValue = null): mixed
     {
         $castedValue = self::parseNullableEnum($className, $value);
         if ($castedValue === null) {

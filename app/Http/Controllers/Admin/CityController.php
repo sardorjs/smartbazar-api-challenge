@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\DTO\Admin\City\StoreCityDTO;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
 use App\Http\UseCases\Admin\City\CreateCityUseCase;
 use App\Http\UseCases\Admin\City\StoreCityUseCase;
 use App\Models\City;
+use App\Utils\ParserUtility\Exceptions\ParseException;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CityController extends BaseController
@@ -28,7 +31,7 @@ class CityController extends BaseController
 
         $count = $cities->count();
 
-        $cities = $cities->paginate(self::PAGE_NUMBER);
+        $cities = $cities->orderByDesc('id')->paginate(self::PAGE_NUMBER);
         return view('admin.city.index', compact('cities', 'count'));
     }
 
@@ -46,13 +49,17 @@ class CityController extends BaseController
 
     /**
      * Store a newly created resource in storage.
+     * @param StoreCityRequest $request
+     * @param StoreCityUseCase $storeCityUseCase
+     * @return RedirectResponse
+     * @throws ParseException
      */
     public function store(
         StoreCityRequest $request,
         StoreCityUseCase $storeCityUseCase,
-    ):
+    ): RedirectResponse
     {
-        return $storeCityUseCase->execute();
+        return $storeCityUseCase->execute(StoreCityDTO::fromArray($request->validated()));
     }
 
     /**
