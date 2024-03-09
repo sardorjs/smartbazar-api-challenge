@@ -6,6 +6,7 @@ use App\Http\DTO\Admin\City\StoreCityDTO;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
 use App\Http\UseCases\Admin\City\CreateCityUseCase;
+use App\Http\UseCases\Admin\City\EditCityUseCase;
 use App\Http\UseCases\Admin\City\StoreCityUseCase;
 use App\Models\City;
 use App\Utils\ParserUtility\Exceptions\ParseException;
@@ -72,10 +73,16 @@ class CityController extends BaseController
 
     /**
      * Show the form for editing the specified resource.
+     * @param City $city
+     * @param EditCityUseCase $editCityUseCase
+     * @return View
      */
-    public function edit(City $city)
+    public function edit(
+        City $city,
+        EditCityUseCase $editCityUseCase,
+    ): View
     {
-        //
+        return $editCityUseCase->execute($city);
     }
 
     /**
