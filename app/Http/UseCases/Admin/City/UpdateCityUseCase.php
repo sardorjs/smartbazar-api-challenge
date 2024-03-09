@@ -2,27 +2,25 @@
 
 namespace App\Http\UseCases\Admin\City;
 
-use App\Http\DTO\Admin\City\StoreCityDTO;
+use App\Http\DTO\Admin\City\UpdateCityDTO;
 use App\Models\City;
 use App\Repositories\City\CityRepositoryInterface;
 use Illuminate\Http\RedirectResponse;
 
-class StoreCityUseCase
+class UpdateCityUseCase
 {
     public function __construct(
         private readonly CityRepositoryInterface $cityRepository,
     ) {}
 
     /**
-     * @param StoreCityDTO $storeCityDTO
      * @return RedirectResponse
      */
-    public function execute(StoreCityDTO $storeCityDTO): RedirectResponse
+    public function execute(City $city, UpdateCityDTO $updateCityDTO): RedirectResponse
     {
-        $city = new City();
-        $city->name = $storeCityDTO->getName();
+        $city->name = $updateCityDTO->getName();
         $this->cityRepository->save($city);
 
-        return redirect()->route('admin.city.index')->with('success', __('The City was successfully created!'));
+        return redirect()->route('admin.city.index')->with('success', __('The City was successfully updated!'));
     }
 }

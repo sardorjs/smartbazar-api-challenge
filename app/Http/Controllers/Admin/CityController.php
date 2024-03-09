@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\DTO\Admin\City\StoreCityDTO;
+use App\Http\DTO\Admin\City\UpdateCityDTO;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
 use App\Http\UseCases\Admin\City\CreateCityUseCase;
 use App\Http\UseCases\Admin\City\EditCityUseCase;
 use App\Http\UseCases\Admin\City\StoreCityUseCase;
+use App\Http\UseCases\Admin\City\UpdateCityUseCase;
 use App\Models\City;
 use App\Utils\ParserUtility\Exceptions\ParseException;
 use Illuminate\Contracts\View\View;
@@ -88,9 +90,12 @@ class CityController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCityRequest $request, City $city)
-    {
-        //
+    public function update(
+        UpdateCityRequest $request,
+        City $city,
+        UpdateCityUseCase $updateCityUseCase,
+    ) {
+        return $updateCityUseCase->execute($city, UpdateCityDTO::fromArray($request->validated()));
     }
 
     /**

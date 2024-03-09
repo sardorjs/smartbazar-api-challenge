@@ -6,6 +6,7 @@
     <div class="content bg-white shadow p-4 rounded">
         <form action="{{ route('admin.city.update', $city) }}" method="POST" enctype="multipart/form-data"
             class="flex flex-row flex-wrap justify-start gap-4 items-end">
+            @method('PUT')
             @csrf
 
             <div>

@@ -2,8 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Models\City;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
+/**
+ * @property City $city
+ */
 class UpdateCityRequest extends FormRequest
 {
     /**
@@ -11,7 +16,7 @@ class UpdateCityRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +27,10 @@ class UpdateCityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => [
+                'required', 'string', 'min:2', 'max:192',
+                Rule::unique('cities')->ignore($this->city)
+            ],
         ];
     }
 }
