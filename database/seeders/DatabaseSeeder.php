@@ -6,7 +6,9 @@ use App\Models\City;
 use App\Models\Merchant;
 use App\Models\Rayon;
 use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +17,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        //Добавление админа
+        User::factory([
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('admin12345'),
+        ])->create();
+
         // Добавление фейковых городов и районов
         City::factory()
             ->count(3)

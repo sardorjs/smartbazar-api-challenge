@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,14 @@ Route::get('/', function () {
     return view('front.home');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function (){
+    Route::get('/', function (){
+        return view('admin.index');
+    })->name('index');
+
+    Route::resource('city', CityController::class);
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

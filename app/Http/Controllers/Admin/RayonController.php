@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRayonRequest;
 use App\Http\Requests\UpdateRayonRequest;
 use App\Models\Rayon;
