@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMerchantRequest;
 use App\Http\Requests\UpdateMerchantRequest;
 use App\Models\Merchant;
