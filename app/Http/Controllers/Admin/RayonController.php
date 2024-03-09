@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRayonRequest;
 use App\Http\Requests\UpdateRayonRequest;
 use App\Models\Rayon;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class RayonController extends Controller
+class RayonController extends BaseController
 {
-    /**
+   /**
      * Display a listing of the resource.
+     * @param Request $request
+     * @return View
      */
-    public function index()
+    public function index(Request $request): View
     {
-        //
+        $rayons = Rayon::query();
+
+        if ($request->has('name')) {
+            $query_value = $request->query('name');
+            $rayons = $rayons->where('name', 'LIKE', "%$query_value%");
+        }
+
+        $count = $rayons->count();
+
+        $rayons = $rayons->orderByDesc('id')->paginate(self::PAGE_NUMBER);
+        return view('admin.rayon.index', compact('rayons', 'count'));
     }
 
     /**

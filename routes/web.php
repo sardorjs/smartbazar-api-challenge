@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\RayonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     })->name('index');
 
     Route::resource('city', CityController::class);
+    Route::resource('rayon', RayonController::class);
 });
 
 

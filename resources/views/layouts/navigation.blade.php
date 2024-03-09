@@ -12,11 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin')">
+                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                         {{ __('Admin panel') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.city.index')" :active="request()->routeIs('admin/city')">
+                    <x-nav-link :href="route('admin.city.index')" :active="request()->routeIs('admin.city.*')">
                         {{ __('City') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.rayon.index')" :active="request()->routeIs('admin.rayon.*')">
+                        {{ __('Rayon') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -70,11 +73,14 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin')">
+            <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                 {{ __('Admin Panel') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.city.index')" :active="request()->routeIs('admin/city')">
+            <x-responsive-nav-link :href="route('admin.city.index')" :active="request()->routeIs('admin.city.*')">
                 {{ __('City') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.rayon.index')" :active="request()->routeIs('admin.rayon.*')">
+                {{ __('Rayon') }}
             </x-responsive-nav-link>
         </div>
 
