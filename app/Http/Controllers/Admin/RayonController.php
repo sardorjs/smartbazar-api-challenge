@@ -7,6 +7,7 @@ use App\Http\DTO\Admin\Rayon\UpdateRayonDTO;
 use App\Http\Requests\StoreRayonRequest;
 use App\Http\Requests\UpdateRayonRequest;
 use App\Http\UseCases\Admin\Rayon\CreateRayonUseCase;
+use App\Http\UseCases\Admin\Rayon\DestroyRayonUseCase;
 use App\Http\UseCases\Admin\Rayon\EditRayonUseCase;
 use App\Http\UseCases\Admin\Rayon\StoreRayonUseCase;
 use App\Http\UseCases\Admin\Rayon\UpdateRayonUseCase;
@@ -106,9 +107,15 @@ class RayonController extends BaseController
 
     /**
      * Remove the specified resource from storage.
+     * @param Rayon $rayon
+     * @param DestroyRayonUseCase $destroyRayonUseCase
+     * @return RedirectResponse
      */
-    public function destroy(Rayon $rayon)
+    public function destroy(
+        Rayon $rayon,
+        DestroyRayonUseCase $destroyRayonUseCase,
+    ): RedirectResponse
     {
-        //
+        return $destroyRayonUseCase->execute($rayon);
     }
 }
