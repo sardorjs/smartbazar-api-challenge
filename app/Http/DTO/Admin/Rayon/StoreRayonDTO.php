@@ -49,12 +49,13 @@ class StoreRayonDTO extends AbstractEntity
     }
 
     /**
-     * @return string[]
+     * @return array
      */
     public function jsonSerialize(): array
     {
         return [
-            'name' => $this->name
+            'city_id' => $this->city_id,
+            'name' => $this->name,
         ];
     }
 }

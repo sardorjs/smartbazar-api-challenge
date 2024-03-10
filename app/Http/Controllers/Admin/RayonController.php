@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\DTO\Admin\Rayon\StoreRayonDTO;
+use App\Http\DTO\Admin\Rayon\UpdateRayonDTO;
 use App\Http\Requests\StoreRayonRequest;
 use App\Http\Requests\UpdateRayonRequest;
 use App\Http\UseCases\Admin\Rayon\CreateRayonUseCase;
 use App\Http\UseCases\Admin\Rayon\EditRayonUseCase;
 use App\Http\UseCases\Admin\Rayon\StoreRayonUseCase;
+use App\Http\UseCases\Admin\Rayon\UpdateRayonUseCase;
 use App\Models\Rayon;
 use App\Utils\ParserUtility\Exceptions\ParseException;
 use Illuminate\Http\RedirectResponse;
@@ -87,10 +89,19 @@ class RayonController extends BaseController
 
     /**
      * Update the specified resource in storage.
+     * @param Rayon $rayon
+     * @param UpdateRayonRequest $request
+     * @param UpdateRayonUseCase $updateRayonUseCase
+     * @return RedirectResponse
+     * @throws ParseException
      */
-    public function update(UpdateRayonRequest $request, Rayon $rayon)
+    public function update(
+        Rayon $rayon,
+        UpdateRayonRequest $request,
+        UpdateRayonUseCase $updateRayonUseCase,
+    ): RedirectResponse
     {
-        //
+        return $updateRayonUseCase->execute($rayon, UpdateRayonDTO::fromArray($request->validated()));
     }
 
     /**

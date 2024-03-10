@@ -17,7 +17,7 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pr-6 pl-2.5 py-2.5">
                         <option selected disabled>{{ __('--Choose a city--') }}</option>
                         @foreach ($cities as $city)
-                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            <option value="{{ $city->id }}" {{ old('city_id') == $city->id ? 'selected' : '' }}>{{ $city->name }}</option>
                         @endforeach
                     </select>
                 @else

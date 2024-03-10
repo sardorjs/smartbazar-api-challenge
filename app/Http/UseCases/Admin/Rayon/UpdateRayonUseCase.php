@@ -20,6 +20,7 @@ class UpdateRayonUseCase
      */
     public function execute(Rayon $rayon, UpdateRayonDTO $updateRayonDTO): RedirectResponse
     {
+        $rayon->city_id = $updateRayonDTO->getCityId();
         $rayon->name = $updateRayonDTO->getName();
         $this->rayonRepository->save($rayon);
 
