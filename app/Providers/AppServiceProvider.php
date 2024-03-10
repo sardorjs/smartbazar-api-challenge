@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\City\CityLocalRepository;
 use App\Repositories\City\CityRepositoryInterface;
+use App\Repositories\Rayon\RayonLocalRepository;
+use App\Repositories\Rayon\RayonRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +17,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(CityRepositoryInterface::class, function (){
             return $this->app->make(CityLocalRepository::class);
+        });
+        $this->app->bind(RayonRepositoryInterface::class, function (){
+            return $this->app->make(RayonLocalRepository::class);
         });
 
     }

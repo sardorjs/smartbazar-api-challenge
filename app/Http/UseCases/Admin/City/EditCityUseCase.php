@@ -3,7 +3,7 @@
 namespace App\Http\UseCases\Admin\City;
 
 use App\Models\City;
-use Illuminate\Contracts\View\View;
+use Illuminate\View\View;
 
 class EditCityUseCase
 {

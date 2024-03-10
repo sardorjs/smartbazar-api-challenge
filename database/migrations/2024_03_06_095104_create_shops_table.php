@@ -13,9 +13,18 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('city_id')->constrained();
-            $table->foreignId('rayon_id')->constrained();
-            $table->foreignId('merchant_id')->constrained();
+            $table->foreignId('city_id')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+            $table->foreignId('rayon_id')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+            $table->foreignId('merchant_id')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->string('name');
             $table->string('latitude')->comment('Широта координатов');
             $table->string('longitude')->comment('Долгота координатов');
