@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreRayonRequest;
 use App\Http\Requests\UpdateRayonRequest;
+use App\Http\UseCases\Admin\Rayon\CreateRayonUseCase;
 use App\Models\Rayon;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -32,10 +33,14 @@ class RayonController extends BaseController
 
     /**
      * Show the form for creating a new resource.
+     * @param CreateRayonUseCase $createRayonUseCase
+     * @return View
      */
-    public function create()
+    public function create(
+        CreateRayonUseCase $createRayonUseCase,
+    ): View
     {
-        //
+        return $createRayonUseCase->execute();
     }
 
     /**

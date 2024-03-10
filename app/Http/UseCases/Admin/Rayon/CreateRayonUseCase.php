@@ -2,6 +2,7 @@
 
 namespace App\Http\UseCases\Admin\Rayon;
 
+use App\Models\City;
 use Illuminate\Contracts\View\View;
 
 class CreateRayonUseCase
@@ -11,6 +12,7 @@ class CreateRayonUseCase
      */
     public function execute(): View
     {
-        return view('admin.rayon.create');
+        $cities = City::query()->orderByDesc('id')->get();
+        return view('admin.rayon.create', compact('cities'));
     }
 }
