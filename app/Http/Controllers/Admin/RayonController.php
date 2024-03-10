@@ -6,6 +6,7 @@ use App\Http\DTO\Admin\Rayon\StoreRayonDTO;
 use App\Http\Requests\StoreRayonRequest;
 use App\Http\Requests\UpdateRayonRequest;
 use App\Http\UseCases\Admin\Rayon\CreateRayonUseCase;
+use App\Http\UseCases\Admin\Rayon\EditRayonUseCase;
 use App\Http\UseCases\Admin\Rayon\StoreRayonUseCase;
 use App\Models\Rayon;
 use App\Utils\ParserUtility\Exceptions\ParseException;
@@ -72,10 +73,16 @@ class RayonController extends BaseController
 
     /**
      * Show the form for editing the specified resource.
+     * @param Rayon $rayon
+     * @param EditRayonUseCase $editRayonUseCase
+     * @return View
      */
-    public function edit(Rayon $rayon)
+    public function edit(
+        Rayon $rayon,
+        EditRayonUseCase $editRayonUseCase,
+    ): View
     {
-        //
+        return $editRayonUseCase->execute($rayon);
     }
 
     /**

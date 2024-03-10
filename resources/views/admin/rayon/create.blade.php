@@ -8,7 +8,6 @@
             class="flex flex-row flex-wrap justify-start gap-4 items-end">
             @csrf
 
-
             <div class="">
                 <label for="city_id" class="block mb-2 text-sm font-medium text-gray-900">
                     {{ __('Select a city') }} <span class="text-red-500">*</span>
@@ -28,7 +27,6 @@
                 @endif
             </div>
   
-
             <div>
                 <label for="name" 
                     class="block mb-2 text-sm font-medium text-gray-900">

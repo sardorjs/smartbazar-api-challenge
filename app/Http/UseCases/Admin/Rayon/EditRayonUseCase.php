@@ -2,8 +2,9 @@
 
 namespace App\Http\UseCases\Admin\Rayon;
 
+use App\Models\City;
 use App\Models\Rayon;
-use Illuminate\Contracts\View\View;
+use Illuminate\View\View;
 
 class EditRayonUseCase
 {
@@ -13,6 +14,7 @@ class EditRayonUseCase
      */
     public function execute(Rayon $rayon): View
     {
-        return view('admin.rayon.edit', compact('rayon'));
+        $cities = City::query()->orderByDesc('id')->get();
+        return view('admin.rayon.edit', compact('rayon', 'cities'));
     }
 }
