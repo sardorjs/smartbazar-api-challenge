@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\DTO\Admin\Rayon\StoreRayonDTO;
 use App\Http\Requests\StoreRayonRequest;
 use App\Http\Requests\UpdateRayonRequest;
 use App\Http\UseCases\Admin\Rayon\CreateRayonUseCase;
+use App\Http\UseCases\Admin\Rayon\StoreRayonUseCase;
 use App\Models\Rayon;
+use App\Utils\ParserUtility\Exceptions\ParseException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -45,10 +49,17 @@ class RayonController extends BaseController
 
     /**
      * Store a newly created resource in storage.
+     * @param StoreRayonRequest $request
+     * @param StoreRayonUseCase $storeRayonUseCase
+     * @return RedirectResponse
+     * @throws ParseException
      */
-    public function store(StoreRayonRequest $request)
+    public function store(
+        StoreRayonRequest $request,
+        StoreRayonUseCase $storeRayonUseCase,
+    ): RedirectResponse
     {
-        //
+        return $storeRayonUseCase->execute(StoreRayonDTO::fromArray($request->validated()));
     }
 
     /**

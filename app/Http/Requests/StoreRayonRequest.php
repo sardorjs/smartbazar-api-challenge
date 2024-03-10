@@ -11,7 +11,7 @@ class StoreRayonRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreRayonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'city_id' => ['required', 'int', 'exists:cities,id'],
+            'name' => ['required', 'string', 'min:2', 'max:192', 'unique:rayons'],
         ];
     }
 }

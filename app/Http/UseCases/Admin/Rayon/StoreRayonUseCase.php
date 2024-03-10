@@ -20,6 +20,7 @@ class StoreRayonUseCase
     public function execute(StoreRayonDTO $storeRayonDTO): RedirectResponse
     {
         $rayon = new Rayon();
+        $rayon->city_id = $storeRayonDTO->getCityId();
         $rayon->name = $storeRayonDTO->getName();
         $this->rayonRepository->save($rayon);
 

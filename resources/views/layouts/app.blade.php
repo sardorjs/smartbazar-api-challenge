@@ -37,7 +37,7 @@
             <!-- Page Content -->
             <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
 
-                @if (session('status'))
+                @if (session('success'))
                     <div id="alert-border-105" class="flex p-4 mb-4 bg-green-100 border-t-4 border-green-500 dark:bg-green-200"
                     role="alert">
                     <svg class="flex-shrink-0 w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20"
@@ -47,7 +47,7 @@
                         clip-rule="evenodd"></path>
                     </svg>
                     <div class="ml-3 text-sm font-medium text-green-700">
-                        <span class="font-medium">{{ _('Success!') }} </span> {{ session('status') }}
+                        <span class="font-medium">{{ _('Success!') }} </span> {{ session('success') }}
                     </div>
                     <button type="button"
                         class="ml-auto -mx-1.5 -my-1.5 bg-green-100 dark:bg-green-200 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 dark:hover:bg-green-300 inline-flex h-8 w-8"
@@ -62,7 +62,7 @@
                     </div>
                 @endif
 
-                @if (session('status_danger'))
+                @if (session('error'))
                     <div id="alert-border-101" class="flex p-4 mb-4 bg-red-100 border-t-4 border-red-500 dark:bg-red-200"
                     role="alert">
                     <svg class="flex-shrink-0 w-5 h-5 text-red-700" fill="currentColor" viewBox="0 0 20 20"
@@ -72,7 +72,7 @@
                         clip-rule="evenodd"></path>
                     </svg>
                     <div class="ml-3 text-sm font-medium text-red-700">
-                        <span class="font-medium">{{ _('Error!') }} </span> {!! nl2br(session('status_danger')) !!}
+                        <span class="font-medium">{{ _('Error!') }} </span> {!! nl2br(session('error')) !!}
                     </div>
                     <button type="button"
                         class="ml-auto -mx-1.5 -my-1.5 bg-red-100 dark:bg-red-200 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 dark:hover:bg-red-300 inline-flex h-8 w-8"
@@ -87,7 +87,7 @@
                     </div>
                 @endif
 
-                @if (session('status_warning'))
+                @if (session('warning'))
                     <div id="alert-border-100" class="flex p-2 md:p-4 mb-4 bg-red-100 border-t-4 border-red-500 dark:bg-red-200"
                         role="alert">
                         <svg class="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 text-red-700" fill="currentColor" viewBox="0 0 20 20"
@@ -97,7 +97,7 @@
                             clip-rule="evenodd"></path>
                         </svg>
                         <div class="ml-2 md:ml-3 text-xs md:text-sm md:font-medium text-red-700">
-                        <span class="font-medium">{{ _('Note!') }} </span> {{ session('status_warning') }}
+                        <span class="font-medium">{{ _('Note!') }} </span> {{ session('warning') }}
                         </div>
                         <button type="button"
                         class="ml-auto -mx-1.5 -my-1.5 bg-red-100 dark:bg-red-200 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 dark:hover:bg-red-300 inline-flex h-8 w-8"
