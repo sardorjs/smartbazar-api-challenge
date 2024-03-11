@@ -56,6 +56,6 @@ class Shop extends Model
 
     public function merchant(): BelongsTo
     {
-        return $this->belongsTo(Merchant::query());
+        return $this->belongsTo(Merchant::class);
     }
 }

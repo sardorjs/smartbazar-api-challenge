@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShopRequest;
 use App\Http\Requests\UpdateShopRequest;
 use App\Models\Shop;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class ShopController extends Controller
+class ShopController extends BaseController
 {
     /**
      * Display a listing of the resource.
+     * @param Request $request
+     * @return View
      */
-    public function index()
+    public function index(Request $request): View
     {
-        //
+        $shops = Shop::query();
+
+        if ($request->has('name')) {
+            $query_value = $request->query('name');
+            $shops = $shops->where('name', 'LIKE', "%$query_value%");
+        }
+
+        $count = $shops->count();
+
+        $shops = $shops->orderByDesc('id')->paginate(self::PAGE_NUMBER);
+        return view('admin.shop.index', compact('shops', 'count'));
     }
 
     /**

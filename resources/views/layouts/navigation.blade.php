@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('admin.merchant.index')" :active="request()->routeIs('admin.merchant.*')">
                         {{ __('Merchant') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.shop.index')" :active="request()->routeIs('admin.shop.*')">
+                        {{ __('Shop') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -87,6 +90,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.merchant.index')" :active="request()->routeIs('admin.merchant.*')">
                 {{ __('Merchant') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.shop.index')" :active="request()->routeIs('admin.shop.*')">
+                {{ __('Shop') }}
             </x-responsive-nav-link>
         </div>
 
