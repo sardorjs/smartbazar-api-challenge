@@ -12,7 +12,7 @@
                         <div>
                             <label for="name" 
                                 class="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                            <input type="text" id="name" name="name" placeholder="e.g: Mirabad" value="{{ request()->has('name') ? request()->query('name') : ''}}" required 
+                            <input type="text" id="name" name="name" placeholder="e.g: Market" value="{{ request()->has('name') ? request()->query('name') : ''}}" required 
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
                         </div>
                         

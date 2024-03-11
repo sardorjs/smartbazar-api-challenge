@@ -7,6 +7,7 @@ use App\Http\DTO\Admin\Shop\UpdateShopDTO;
 use App\Http\Requests\StoreShopRequest;
 use App\Http\Requests\UpdateShopRequest;
 use App\Http\UseCases\Admin\Shop\CreateShopUseCase;
+use App\Http\UseCases\Admin\Shop\DestroyShopUseCase;
 use App\Http\UseCases\Admin\Shop\EditShopUseCase;
 use App\Http\UseCases\Admin\Shop\StoreShopUseCase;
 use App\Http\UseCases\Admin\Shop\UpdateShopUseCase;
@@ -108,9 +109,15 @@ class ShopController extends BaseController
 
     /**
      * Remove the specified resource from storage.
+     * @param Shop $shop
+     * @param DestroyShopUseCase $destroyShopUseCase
+     * @return RedirectResponse
      */
-    public function destroy(Shop $shop)
+    public function destroy(
+        Shop $shop,
+        DestroyShopUseCase $destroyShopUseCase,
+    ): RedirectResponse
     {
-        //
+        return $destroyShopUseCase->execute($shop);
     }
 }
