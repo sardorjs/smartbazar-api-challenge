@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\DTO\Admin\Merchant\StoreMerchantDTO;
 use App\Http\Requests\StoreMerchantRequest;
 use App\Http\Requests\UpdateMerchantRequest;
 use App\Http\UseCases\Admin\Merchant\CreateMerchantUseCase;
+use App\Http\UseCases\Admin\Merchant\StoreMerchantUseCase;
 use App\Models\Merchant;
+use App\Utils\ParserUtility\Exceptions\ParseException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -45,10 +49,18 @@ class MerchantController extends BaseController
 
     /**
      * Store a newly created resource in storage.
+     * @param StoreMerchantRequest $request
+     * @param StoreMerchantUseCase $storeCityUseCase
+     * @return RedirectResponse
+     * @throws ParseException
      */
-    public function store(StoreMerchantRequest $request)
+    public function store(
+        StoreMerchantRequest $request,
+        StoreMerchantUseCase $storeCityUseCase,
+    ): RedirectResponse
     {
-        //
+        $status = $request->boolean('status');
+        return $storeCityUseCase->execute(StoreMerchantDTO::fromArray($request->validated()), $status);
     }
 
     /**
