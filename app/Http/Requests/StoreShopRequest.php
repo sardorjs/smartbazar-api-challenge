@@ -2,8 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Helpers\RegExpRules;
+use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
+/**
+ * @property Shop $shop
+ */
 class StoreShopRequest extends FormRequest
 {
     /**
@@ -11,7 +17,7 @@ class StoreShopRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +28,18 @@ class StoreShopRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'city_id' => ['required', 'int', 'exists:cities,id'],
+            'rayon_id' => ['required', 'int', 'exists:rayons,id'],
+            'merchant_id' => ['required', 'int', 'exists:merchants,id'],
+            'name' => [
+                'required', 'string', 'min:2', 'max:192',
+                Rule::unique('shops')->where('merchant_id', $this->input('merchant_id'))->ignore($this->shop)
+            ],
+            'latitude' => ['required', 'string', 'max:190', 'regex:' . RegExpRules::latitude()],
+            'longitude' => ['required', 'string', 'max:190', 'regex:' . RegExpRules::longitude()],
+            'address' => ['nullable', 'string', 'max:190',],
+            'schedule' => ['nullable', 'string', ],
+            'phone' => ['nullable', 'string', 'max:190', 'regex:' . RegExpRules::phone()],
         ];
     }
 }

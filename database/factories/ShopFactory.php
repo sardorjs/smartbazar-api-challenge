@@ -32,7 +32,7 @@ class ShopFactory extends Factory
             'longitude' => fake()->longitude(),
             'address' => fake()->address(),
             'schedule' => fake()->text(),
-            'phone' => fake()->phoneNumber(),
+            'phone' => fake()->e164PhoneNumber(), //Example output: +14809888523, +12705838722, +13869134701
             'status' => true,
             'registered_at' => now()
         ];

@@ -8,6 +8,8 @@ use App\Repositories\Merchant\MerchantLocalRepository;
 use App\Repositories\Merchant\MerchantRepositoryInterface;
 use App\Repositories\Rayon\RayonLocalRepository;
 use App\Repositories\Rayon\RayonRepositoryInterface;
+use App\Repositories\Shop\ShopLocalRepository;
+use App\Repositories\Shop\ShopRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +27,9 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind(MerchantRepositoryInterface::class, function (){
             return $this->app->make(MerchantLocalRepository::class);
+        });
+        $this->app->bind(ShopRepositoryInterface::class, function (){
+            return $this->app->make(ShopLocalRepository::class);
         });
     }
 

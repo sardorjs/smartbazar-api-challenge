@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\DTO\Admin\Shop\StoreShopDTO;
 use App\Http\Requests\StoreShopRequest;
 use App\Http\Requests\UpdateShopRequest;
 use App\Http\UseCases\Admin\Shop\CreateShopUseCase;
+use App\Http\UseCases\Admin\Shop\StoreShopUseCase;
 use App\Models\Shop;
+use App\Utils\ParserUtility\Exceptions\ParseException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -45,10 +49,18 @@ class ShopController extends BaseController
 
     /**
      * Store a newly created resource in storage.
+     * @param StoreShopRequest $request
+     * @param StoreShopUseCase $storeRayonUseCase
+     * @return RedirectResponse
+     * @throws ParseException
      */
-    public function store(StoreShopRequest $request)
+    public function store(
+        StoreShopRequest $request,
+        StoreShopUseCase $storeRayonUseCase,
+    ): RedirectResponse
     {
-        //
+        $status = $request->boolean('status');
+        return $storeRayonUseCase->execute(StoreShopDTO::fromArray($request->validated()), status: $status);
     }
 
     /**
