@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\DTO\Admin\Shop\StoreShopDTO;
+use App\Http\DTO\Admin\Shop\UpdateShopDTO;
 use App\Http\Requests\StoreShopRequest;
 use App\Http\Requests\UpdateShopRequest;
 use App\Http\UseCases\Admin\Shop\CreateShopUseCase;
 use App\Http\UseCases\Admin\Shop\EditShopUseCase;
 use App\Http\UseCases\Admin\Shop\StoreShopUseCase;
+use App\Http\UseCases\Admin\Shop\UpdateShopUseCase;
 use App\Models\Shop;
 use App\Utils\ParserUtility\Exceptions\ParseException;
 use Illuminate\Http\RedirectResponse;
@@ -74,21 +76,34 @@ class ShopController extends BaseController
 
     /**
      * Show the form for editing the specified resource.
+     * @param Shop $shop
+     * @param EditShopUseCase $editShopUseCase
+     * @return View
      */
     public function edit(
         Shop $shop,
         EditShopUseCase $editShopUseCase,
-    )
+    ): View
     {
         return $editShopUseCase->execute($shop);
     }
 
     /**
      * Update the specified resource in storage.
+     * @param Shop $shop
+     * @param UpdateShopRequest $request
+     * @param UpdateShopUseCase $updateShopUseCase
+     * @return RedirectResponse
+     * @throws ParseException
      */
-    public function update(UpdateShopRequest $request, Shop $shop)
+    public function update(
+        Shop $shop,
+        UpdateShopRequest $request,
+        UpdateShopUseCase $updateShopUseCase,
+    ): RedirectResponse
     {
-        //
+        $status = $request->boolean('status');
+        return $updateShopUseCase->execute($shop, UpdateShopDTO::fromArray($request->validated()), $status);
     }
 
     /**

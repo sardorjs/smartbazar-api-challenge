@@ -33,7 +33,7 @@ class StoreShopRequest extends FormRequest
             'merchant_id' => ['required', 'int', 'exists:merchants,id'],
             'name' => [
                 'required', 'string', 'min:2', 'max:192',
-                Rule::unique('shops')->where('merchant_id', $this->input('merchant_id'))->ignore($this->shop)
+                Rule::unique('shops')->where('merchant_id', $this->input('merchant_id'))
             ],
             'latitude' => ['required', 'string', 'max:190', 'regex:' . RegExpRules::latitude()],
             'longitude' => ['required', 'string', 'max:190', 'regex:' . RegExpRules::longitude()],
