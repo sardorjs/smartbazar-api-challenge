@@ -7,6 +7,7 @@ use App\Http\DTO\Admin\Merchant\UpdateMerchantDTO;
 use App\Http\Requests\StoreMerchantRequest;
 use App\Http\Requests\UpdateMerchantRequest;
 use App\Http\UseCases\Admin\Merchant\CreateMerchantUseCase;
+use App\Http\UseCases\Admin\Merchant\DestroyMerchantUseCase;
 use App\Http\UseCases\Admin\Merchant\EditMerchantUseCase;
 use App\Http\UseCases\Admin\Merchant\StoreMerchantUseCase;
 use App\Http\UseCases\Admin\Merchant\UpdateMerchantUseCase;
@@ -110,9 +111,15 @@ class MerchantController extends BaseController
 
     /**
      * Remove the specified resource from storage.
+     * @param Merchant $merchant
+     * @param DestroyMerchantUseCase $destroyMerchantUseCase
+     * @return RedirectResponse
      */
-    public function destroy(Merchant $merchant)
+    public function destroy(
+        Merchant $merchant,
+        DestroyMerchantUseCase $destroyMerchantUseCase,
+    ): RedirectResponse
     {
-        //
+        return $destroyMerchantUseCase->execute($merchant);
     }
 }
