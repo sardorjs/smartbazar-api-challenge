@@ -50,7 +50,7 @@
                                     {{ __('Name') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    {{ __('Created at') }}
+                                    {{ __('Registered at') }}
                                 </th>
                             </tr>
                         </thead>
@@ -82,7 +82,7 @@
                                     </th>
 
                                     <td class="px-6 py-4">
-                                        {{ $merchant->created_at->format('d-m-Y H:i:s') }}
+                                        {{ $merchant->registered_at->format('d-m-Y H:i:s') }}
                                     </td>
                                 </tr>
                             @endforeach

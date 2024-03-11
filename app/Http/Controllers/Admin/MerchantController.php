@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreMerchantRequest;
 use App\Http\Requests\UpdateMerchantRequest;
+use App\Http\UseCases\Admin\Merchant\CreateMerchantUseCase;
 use App\Models\Merchant;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -32,10 +33,14 @@ class MerchantController extends BaseController
 
     /**
      * Show the form for creating a new resource.
+     * @param CreateMerchantUseCase $createMerchantUseCase
+     * @return View
      */
-    public function create()
+    public function create(
+        CreateMerchantUseCase $createMerchantUseCase,
+    ): View
     {
-        //
+        return $createMerchantUseCase->execute();
     }
 
     /**
