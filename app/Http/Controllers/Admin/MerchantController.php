@@ -6,6 +6,7 @@ use App\Http\DTO\Admin\Merchant\StoreMerchantDTO;
 use App\Http\Requests\StoreMerchantRequest;
 use App\Http\Requests\UpdateMerchantRequest;
 use App\Http\UseCases\Admin\Merchant\CreateMerchantUseCase;
+use App\Http\UseCases\Admin\Merchant\EditMerchantUseCase;
 use App\Http\UseCases\Admin\Merchant\StoreMerchantUseCase;
 use App\Models\Merchant;
 use App\Utils\ParserUtility\Exceptions\ParseException;
@@ -66,17 +67,25 @@ class MerchantController extends BaseController
     /**
      * Display the specified resource.
      */
-    public function show(Merchant $merchant)
+    public function show(
+        Merchant $merchant,
+    )
     {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
+     * @param Merchant $merchant
+     * @param EditMerchantUseCase $editMerchantUseCase
+     * @return View
      */
-    public function edit(Merchant $merchant)
+    public function edit(
+        Merchant $merchant,
+        EditMerchantUseCase $editMerchantUseCase,
+    ): View
     {
-        //
+        return $editMerchantUseCase->execute($merchant);
     }
 
     /**
