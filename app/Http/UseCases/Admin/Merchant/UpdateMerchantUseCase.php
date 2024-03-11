@@ -16,11 +16,13 @@ class UpdateMerchantUseCase
     /**
      * @param Merchant $merchant
      * @param UpdateMerchantDTO $updateMerchantDTO
+     * @param bool $status
      * @return RedirectResponse
      */
-    public function execute(Merchant $merchant, UpdateMerchantDTO $updateMerchantDTO): RedirectResponse
+    public function execute(Merchant $merchant, UpdateMerchantDTO $updateMerchantDTO, bool $status): RedirectResponse
     {
         $merchant->name = $updateMerchantDTO->getName();
+        $merchant->status = $status;
         $this->merchantRepository->save($merchant);
 
         return redirect()->route('admin.merchant.index')->with('success', __('The Merchant was successfully updated!'));

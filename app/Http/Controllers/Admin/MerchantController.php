@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\DTO\Admin\Merchant\StoreMerchantDTO;
+use App\Http\DTO\Admin\Merchant\UpdateMerchantDTO;
 use App\Http\Requests\StoreMerchantRequest;
 use App\Http\Requests\UpdateMerchantRequest;
 use App\Http\UseCases\Admin\Merchant\CreateMerchantUseCase;
 use App\Http\UseCases\Admin\Merchant\EditMerchantUseCase;
 use App\Http\UseCases\Admin\Merchant\StoreMerchantUseCase;
+use App\Http\UseCases\Admin\Merchant\UpdateMerchantUseCase;
 use App\Models\Merchant;
 use App\Utils\ParserUtility\Exceptions\ParseException;
 use Illuminate\Http\RedirectResponse;
@@ -90,10 +92,20 @@ class MerchantController extends BaseController
 
     /**
      * Update the specified resource in storage.
+     * @param UpdateMerchantRequest $request
+     * @param Merchant $merchant
+     * @param UpdateMerchantUseCase $updateMerchantUseCase
+     * @return RedirectResponse
+     * @throws ParseException
      */
-    public function update(UpdateMerchantRequest $request, Merchant $merchant)
+    public function update(
+        UpdateMerchantRequest $request,
+        Merchant $merchant,
+        UpdateMerchantUseCase $updateMerchantUseCase,
+    ): RedirectResponse
     {
-        //
+        $status = $request->boolean('status');
+        return $updateMerchantUseCase->execute($merchant, UpdateMerchantDTO::fromArray($request->validated()), $status);
     }
 
     /**
