@@ -6,6 +6,7 @@ use App\Http\DTO\Admin\Shop\StoreShopDTO;
 use App\Http\Requests\StoreShopRequest;
 use App\Http\Requests\UpdateShopRequest;
 use App\Http\UseCases\Admin\Shop\CreateShopUseCase;
+use App\Http\UseCases\Admin\Shop\EditShopUseCase;
 use App\Http\UseCases\Admin\Shop\StoreShopUseCase;
 use App\Models\Shop;
 use App\Utils\ParserUtility\Exceptions\ParseException;
@@ -74,9 +75,12 @@ class ShopController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Shop $shop)
+    public function edit(
+        Shop $shop,
+        EditShopUseCase $editShopUseCase,
+    )
     {
-        //
+        return $editShopUseCase->execute($shop);
     }
 
     /**
