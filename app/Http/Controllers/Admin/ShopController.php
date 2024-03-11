@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\ApplicationEnum;
 use App\Http\DTO\Admin\Shop\StoreShopDTO;
 use App\Http\DTO\Admin\Shop\UpdateShopDTO;
 use App\Http\Requests\StoreShopRequest;
@@ -35,7 +36,7 @@ class ShopController extends BaseController
 
         $count = $shops->count();
 
-        $shops = $shops->orderByDesc('id')->paginate(self::PAGE_NUMBER);
+        $shops = $shops->orderByDesc('id')->paginate(ApplicationEnum::PAGINATION_NUMBER->value)->withQueryString();
         return view('admin.shop.index', compact('shops', 'count'));
     }
 

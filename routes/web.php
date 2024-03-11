@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RayonController;
 use App\Http\Controllers\Admin\MerchantController;
 use App\Http\Controllers\Admin\ShopController;
+use App\Http\Controllers\Front\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('front.home');
+Route::name('front.')->group(function (){
+    Route::get('/', [HomeController::class, 'index'])->name('index');
 });
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function (){

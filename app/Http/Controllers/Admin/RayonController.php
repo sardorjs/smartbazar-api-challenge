@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\ApplicationEnum;
 use App\Http\DTO\Admin\Rayon\StoreRayonDTO;
 use App\Http\DTO\Admin\Rayon\UpdateRayonDTO;
 use App\Http\Requests\StoreRayonRequest;
@@ -35,7 +36,7 @@ class RayonController extends BaseController
 
         $count = $rayons->count();
 
-        $rayons = $rayons->orderByDesc('id')->paginate(self::PAGE_NUMBER);
+        $rayons = $rayons->orderByDesc('id')->paginate(ApplicationEnum::PAGINATION_NUMBER->value)->withQueryString();
         return view('admin.rayon.index', compact('rayons', 'count'));
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\ApplicationEnum;
 use App\Http\DTO\Admin\City\StoreCityDTO;
 use App\Http\DTO\Admin\City\UpdateCityDTO;
 use App\Http\Requests\StoreCityRequest;
@@ -35,7 +36,7 @@ class CityController extends BaseController
 
         $count = $cities->count();
 
-        $cities = $cities->orderByDesc('id')->paginate(self::PAGE_NUMBER);
+        $cities = $cities->orderByDesc('id')->paginate(ApplicationEnum::PAGINATION_NUMBER->value)->withQueryString();
         return view('admin.city.index', compact('cities', 'count'));
     }
 
