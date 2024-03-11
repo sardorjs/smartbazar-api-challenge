@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\ApiController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RayonController;
 use App\Http\Controllers\Admin\MerchantController;
+use App\Http\Controllers\Admin\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +31,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('city', CityController::class);
     Route::resource('rayon', RayonController::class);
     Route::resource('merchant', MerchantController::class);
+    Route::resource('shop', ShopController::class);
+
+    Route::get('get-rayons-by-city-id/{city_id}', [ApiController::class, 'getRayonByCityId'])->name('getRayonByCityId');
 });
 
 
