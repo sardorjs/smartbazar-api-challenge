@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ApiController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RayonController;
@@ -31,6 +32,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('rayon', RayonController::class);
     Route::resource('merchant', MerchantController::class);
     Route::resource('shop', ShopController::class);
+
+    Route::get('get-rayons-by-city-id/{city_id}', [ApiController::class, 'getRayonByCityId'])->name('getRayonByCityId');
 });
 
 

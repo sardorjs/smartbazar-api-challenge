@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreShopRequest;
 use App\Http\Requests\UpdateShopRequest;
+use App\Http\UseCases\Admin\Shop\CreateShopUseCase;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -32,10 +33,14 @@ class ShopController extends BaseController
 
     /**
      * Show the form for creating a new resource.
+     * @param CreateShopUseCase $createShopUseCase
+     * @return View
      */
-    public function create()
+    public function create(
+        CreateShopUseCase $createShopUseCase,
+    ): View
     {
-        //
+        return $createShopUseCase->execute();
     }
 
     /**
