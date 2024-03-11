@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\ApplicationEnum;
 use App\Http\DTO\Admin\Merchant\StoreMerchantDTO;
 use App\Http\DTO\Admin\Merchant\UpdateMerchantDTO;
 use App\Http\Requests\StoreMerchantRequest;
@@ -35,7 +36,7 @@ class MerchantController extends BaseController
 
         $count = $merchants->count();
 
-        $merchants = $merchants->orderByDesc('id')->paginate(self::PAGE_NUMBER);
+        $merchants = $merchants->orderByDesc('id')->paginate(ApplicationEnum::PAGINATION_NUMBER->value)->withQueryString();
         return view('admin.merchant.index', compact('merchants', 'count'));
     }
 
