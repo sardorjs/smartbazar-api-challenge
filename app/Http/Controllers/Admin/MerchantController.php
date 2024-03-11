@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMerchantRequest;
 use App\Http\Requests\UpdateMerchantRequest;
 use App\Models\Merchant;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class MerchantController extends Controller
+class MerchantController extends BaseController
 {
     /**
      * Display a listing of the resource.
+     * @param Request $request
+     * @return View
      */
-    public function index()
+    public function index(Request $request): View
     {
-        //
+        $merchants = Merchant::query();
+
+        if ($request->has('name')) {
+            $query_value = $request->query('name');
+            $merchants = $merchants->where('name', 'LIKE', "%$query_value%");
+        }
+
+        $count = $merchants->count();
+
+        $merchants = $merchants->orderByDesc('id')->paginate(self::PAGE_NUMBER);
+        return view('admin.merchant.index', compact('merchants', 'count'));
     }
 
     /**
