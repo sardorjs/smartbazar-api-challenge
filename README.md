@@ -12,36 +12,41 @@
 - NPM
 
 ## Installation & setup
-#### 1) Install the project via git clone:
+#### - Install the project via git clone:
 ```
 git clone https://github.com/sardorjs/smartbazar-api-challenge.git
 ```
 
-#### 2) Go to the folder:
+#### - Go to the folder:
 ```
 cd smartbazar-api-challenge
 ```
 
-#### 3) Install dependencies via Composer
+#### - Install dependencies via Composer
 ```
-composer install
+composer update
 ```
 
-#### 4) Laravel Sail. Configure A Shell Alias
+#### - Laravel Sail. Configure A Shell Alias
 ```
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 ```
 
-#### 5) Start Sail in Detached Mode
+#### - *Prevent problems with MySQL errors by clearing Docker
+```
+docker-compose down --volumes
+```
+
+#### - Start Sail in Detached Mode
 ```
 sail up -d
 ```
-#### 6) Build Database and Tables via Migrations
+#### - Build Database and Tables via Migrations
 ```
 sail artisan migrate --seed
 ```
 
-#### 7) Run NPM
+#### - Run NPM
 ```
 npm run dev
 ```
