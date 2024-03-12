@@ -8,8 +8,6 @@
 - Docker Desktop
 - Composer
 - GIT
-- Node
-- NPM
 
 ## Installation & setup
 #### - Install the project via git clone:
@@ -58,10 +56,14 @@ sail artisan key:generate
 ```
 sail artisan migrate --seed
 ```
-
-#### - Run NPM
+#### - Installing Vite and the Laravel Plugin
 ```
-npm run dev
+sail npm install
+```
+
+#### - Run NPM to get all styles of TailwindCSS and etc
+```
+sail npm run dev
 ```
 
 ##FRONT END
