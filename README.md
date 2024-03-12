@@ -27,6 +27,12 @@ cd smartbazar-api-challenge
 composer update
 ```
 
+#### - Create .env file from .example
+```
+cp .env.example .env
+```
+
+
 #### - Laravel Sail. Configure A Shell Alias
 ```
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
