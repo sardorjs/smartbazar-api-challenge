@@ -66,13 +66,13 @@ sail npm install
 sail npm run dev
 ```
 
-##FRONT END
+## FRONT END
 
 #### Go to Homepage
 > [localhost](http://localhost/)
 
 
-##BACK END
+## BACK END
 
 #### Go to Admin Panel
 > [localhost/admin](http://localhost/admin)
