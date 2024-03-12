@@ -1,5 +1,5 @@
 # SmartBazar API Challenge
-![](https://upload.wikimedia.org/wikipedia/commons/f/f5/Agrobank_Logo.svg)
+![](https://trustbank.uz/upload/iblock/614/Bez-nazvaniya-_2_.png)
 
 ## Documentation
 `<link>` : <https://docs.google.com/document/d/1p5QwSpLiGMt-oW2jRXm8ciymrlaQauifjogdKV9duHE/edit>
@@ -8,22 +8,57 @@
 - Docker Desktop
 - Composer
 - GIT
+- Node
+- NPM
 
 ## Installation & setup
-#### Install the project via git clone:
-`$ git clone https://github.com/sardorjs/smartbazar-api-challenge.git`
+#### 1) Install the project via git clone:
+```
+git clone https://github.com/sardorjs/smartbazar-api-challenge.git
+```
 
-#### Go to the folder:
-`$ cd smartbazar-api-challenge`
+#### 2) Go to the folder:
+```
+cd smartbazar-api-challenge
+```
 
-...
+#### 3) Install dependencies via Composer
+```
+composer install
+```
+
+#### 4) Laravel Sail. Configure A Shell Alias
+```
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+```
+
+#### 5) Start Sail in Detached Mode
+```
+sail up -d
+```
+#### 6) Build Database and Tables via Migrations
+```
+sail artisan migrate --seed
+```
+
+#### 7) Run NPM
+```
+npm run dev
+```
+
+##FRONT END
+
+#### Go to Homepage
+> [localhost](http://localhost/)
 
 
-#### MacOS Sail alias Locally
-- alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+##BACK END
+
+#### Go to Admin Panel
+> [localhost/admin](http://localhost/admin)
+
 
 #### Admin Credentials:
 - email: admin@admin.com
 - password: admin12345
 
-...
