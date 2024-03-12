@@ -3,6 +3,7 @@
 namespace App\Repositories\City;
 
 use App\Models\City;
+use Illuminate\Database\Eloquent\Collection;
 
 class CityLocalRepository implements CityRepositoryInterface
 {
@@ -16,5 +17,10 @@ class CityLocalRepository implements CityRepositoryInterface
     {
         $city->save();
         return $city;
+    }
+
+    public function getAllOrderedByIdDesc(): Collection
+    {
+        return City::query()->orderByDesc('id')->get();
     }
 }
