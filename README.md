@@ -47,6 +47,13 @@ docker-compose down --volumes
 ```
 sail up -d
 ```
+
+#### - Generate a new key in .env
+```
+sail artisan key:generate
+```
+
+
 #### - Build Database and Tables via Migrations
 ```
 sail artisan migrate --seed
