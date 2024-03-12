@@ -9,7 +9,7 @@
 - Composer
 - GIT
 
-## Installation & setup
+## Installation & setup (Mac)
 #### - Install the project via git clone:
 ```
 git clone https://github.com/sardorjs/smartbazar-api-challenge.git
